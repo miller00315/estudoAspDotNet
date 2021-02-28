@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Data;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,6 +7,13 @@ namespace Mvc.Controllers
 {
     public class CategoryController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public CategoryController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public IActionResult Save()
         {
@@ -12,8 +21,12 @@ namespace Mvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(Category category)
+        public async Task<IActionResult> Save(Category category)
         {
+            _context.Categories.Add(category);
+
+            await _context.SaveChangesAsync();
+
             return View();
         }
     }

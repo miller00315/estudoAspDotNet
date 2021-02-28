@@ -10,6 +10,12 @@ namespace Data
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //Lazy loading pode prejudicar o desempenho do sistema
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }

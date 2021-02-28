@@ -2,6 +2,7 @@
 
 <h2>Category Form</h2>
 <form class="form-horizontal" asp-action="Save" asp-controller="Category" method="POST">
+    <input type="hidden" class="form-control" asp-for="ID" />
     <label class="col-md-1 control-label" for="Name">Name</label>
     <div class="col-md-2">
         <input type="text" class="form-control" asp-for="Name" />

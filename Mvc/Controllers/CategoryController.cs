@@ -22,9 +22,17 @@ namespace Mvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(Category category)
+        public async Task<IActionResult> Save(Category model)
         {
-            _context.Categories.Add(category);
+            if (model.ID == 0)
+                _context.Categories.Add(model);
+            else
+            {
+                var category = _context.Categories.First(c => c.ID == model.ID);
+
+                category.Name = model.Name;
+            }
+
 
             await _context.SaveChangesAsync();
 
@@ -37,6 +45,27 @@ namespace Mvc.Controllers
             var categories = _context.Categories.ToList();
 
             return View(categories);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var category = _context.Categories.First(c => c.ID == id);
+
+            return View("Save", category);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var category = _context.Categories.First(c => c.ID == id);
+
+            _context.Categories.Remove(category);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }

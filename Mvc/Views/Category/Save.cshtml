@@ -1,0 +1,14 @@
+@model Domain.Entities.Category
+
+<h2>Category Form</h2>
+<form class="form-horizontal" asp-action="Save" asp-controller="Category" method="POST">
+    <label class="col-md-1 control-label" for="Name">Name</label>
+    <div class="col-md-2">
+        <input type="text" class="form-control" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <button class="btn btn-success">Save</button>
+        </div>
+    </div>
+</form>

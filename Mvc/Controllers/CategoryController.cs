@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Data;
 using Domain.Entities;
@@ -27,7 +28,15 @@ namespace Mvc.Controllers
 
             await _context.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var categories = _context.Categories.ToList();
+
+            return View(categories);
         }
     }
 }

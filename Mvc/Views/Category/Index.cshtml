@@ -1,0 +1,28 @@
+@model IEnumerable<Domain.Entities.Category>
+
+<h2>All the Categories</h2>
+
+<a href="/Category/Save" class="btn">New Category</a>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <a href="/Category/Edit/@item.ID" class="btn">Editar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

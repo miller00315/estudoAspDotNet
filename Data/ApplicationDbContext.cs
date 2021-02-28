@@ -16,8 +16,19 @@ namespace Data
             optionsBuilder.UseLazyLoadingProxies();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>().Property(p => p.Name).HasMaxLength(50);
+
+            modelBuilder.Entity<Solicitation>().HasKey(p => p.Number);
+
+            modelBuilder.Entity<Solicitation>().Property(p => p.Date).HasDefaultValueSql("getdate()");
+        }
+
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Solicitation> Solicitations { get; set; }
     }
 }

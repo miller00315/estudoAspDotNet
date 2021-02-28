@@ -31,6 +31,7 @@ namespace Mvc.Controllers
                 var category = _context.Categories.First(c => c.ID == model.ID);
 
                 category.Name = model.Name;
+                category.PermitStock = model.PermitStock;
             }
 
 

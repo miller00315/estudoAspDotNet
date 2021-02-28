@@ -1,0 +1,34 @@
+@model Domain.Entities.Product
+
+<h2>Product Form</h2>
+
+<form class="form-horizontal" asp-action="Save" asp-controller="Product" method="POST">
+    <input type="hidden" class="form-control" asp-for="ID" />
+
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="Name">Name</label>
+        <div class="col-md-2">
+            <input type="text" class="form-control" asp-for="Name" />
+        </div>
+    </div>
+    <div class="fomr-group">
+        <label class="col-md-1 control-label" for="category">Category</label>
+        <div class="col-md-2">
+            <select class="form-control" asp-for="CategoryID"
+                asp-items='@(new SelectList(@ViewBag.Categories, "ID", "Name"))'>
+
+            </select>
+        </div>
+    </div>
+    <div class="fomr-group">
+        <label class="col-md-1 control-label" for="isActive">Is Active</label>
+        <div class="col-md-2">
+            <input type="checkbox" class="form-control" asp-for="IsActive" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <button class="btn btn-success">Save</button>
+        </div>
+    </div>
+</form>

@@ -4,6 +4,9 @@ namespace Domain.Entities
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
+        public int CategoryID { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
